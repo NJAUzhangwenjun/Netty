@@ -7,6 +7,9 @@ import java.nio.ByteBuffer;
 import static io.netty.util.internal.MathUtil.isOutOfBounds;
 import static io.netty.util.internal.StringUtil.NEWLINE;
 
+/**
+ * @author user
+ */
 public class ByteBufferUtil {
     private static final char[] BYTE2CHAR = new char[256];
     private static final char[] HEXDUMP_TABLE = new char[256 * 4];

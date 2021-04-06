@@ -21,9 +21,9 @@ import java.nio.charset.Charset;
 public class Client {
     public static void main(String[] args) throws InterruptedException {
         /*模拟启动五个客户端*/
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             new Thread(() -> {
-                sendMessage(Thread.currentThread().getName());
+                sendMessage("客户端消息:" + Thread.currentThread().getName());
             }).start();
         }
         Thread.sleep(30000);
@@ -33,7 +33,7 @@ public class Client {
         try (SocketChannel client = SocketChannel.open()) {
             client.connect(new InetSocketAddress("localhost", 8080));
             /*每个客户端发送五次数据*/
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1; i++) {
                 ByteBuffer buffer = Charset.defaultCharset().encode(message + ":" + i);
                 client.write(buffer);
             }

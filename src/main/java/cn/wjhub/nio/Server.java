@@ -15,6 +15,8 @@ import static java.nio.ByteBuffer.allocate;
 /**
  * 类描述：NIO 创建网络编程
  *
+ * 使用单线程 NIO创建服务器连接
+ *
  * @ClassName Server
  * @Description TODO
  * @Author 张文军

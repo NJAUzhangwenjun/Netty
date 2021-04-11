@@ -1,7 +1,7 @@
 package cn.wjhub.netty.chatroom.client;
 
 
-import cn.wjhub.netty.chatroom.message.LoginRequestMessage;
+import cn.wjhub.netty.chatroom.client.handler.ClientMessageHandler;
 import cn.wjhub.netty.chatroom.protocol.MessageCodecSharable;
 import cn.wjhub.netty.chatroom.protocol.ProcotolFrameDecoder;
 import io.netty.bootstrap.Bootstrap;
@@ -40,13 +40,11 @@ public class ChatClient {
                         @Override
                         public void channelActive(ChannelHandlerContext ctx) throws Exception {
                             /*连接建立后出发连接事件：接受用户名和密码*/
-                            LoginRequestMessage.toLogin(ctx);
+                            ClientMessageHandler.receiveInstructionsAndSendMessages(ctx);
                         }
-
                         @Override
                         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-
-                            LoginRequestMessage.processingResponseMessage(ctx, msg);
+                            ClientMessageHandler.processingResponseMessage(ctx, msg);
                         }
                     });
                 }

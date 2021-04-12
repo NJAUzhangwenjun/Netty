@@ -1,5 +1,6 @@
-package cn.wjhub.netty.chatroom.message;
+package cn.wjhub.netty.rpc.message;
 
+import cn.wjhub.netty.chatroom.message.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -38,14 +39,16 @@ public abstract class Message implements Serializable {
     public static final int GroupMembersResponseMessage = 13;
     public static final int PingMessage = 14;
     public static final int PongMessage = 15;
+    public static final int RPC_MESSAGE_TYPE_REQUEST = 101;
+    public static final int  RPC_MESSAGE_TYPE_RESPONSE = 102;
     private static final Map<Integer, Class<?>> messageClasses = new HashMap<>();
 
     static {
-        messageClasses.put(LoginRequestMessage, LoginRequestMessage.class);
-        messageClasses.put(LoginResponseMessage, LoginResponseMessage.class);
-        messageClasses.put(ChatRequestMessage, ChatRequestMessage.class);
-        messageClasses.put(ChatResponseMessage, ChatResponseMessage.class);
-        messageClasses.put(GroupCreateRequestMessage, GroupCreateRequestMessage.class);
+        messageClasses.put(LoginRequestMessage, cn.wjhub.netty.chatroom.message.LoginRequestMessage.class);
+        messageClasses.put(LoginResponseMessage, cn.wjhub.netty.chatroom.message.LoginResponseMessage.class);
+        messageClasses.put(ChatRequestMessage, cn.wjhub.netty.chatroom.message.ChatRequestMessage.class);
+        messageClasses.put(ChatResponseMessage, cn.wjhub.netty.chatroom.message.ChatResponseMessage.class);
+        messageClasses.put(GroupCreateRequestMessage, cn.wjhub.netty.chatroom.message.GroupCreateRequestMessage.class);
         messageClasses.put(GroupCreateResponseMessage, GroupCreateResponseMessage.class);
         messageClasses.put(GroupJoinRequestMessage, GroupJoinRequestMessage.class);
         messageClasses.put(GroupJoinResponseMessage, GroupJoinResponseMessage.class);
@@ -57,5 +60,7 @@ public abstract class Message implements Serializable {
         messageClasses.put(GroupMembersResponseMessage, GroupMembersResponseMessage.class);
         messageClasses.put(PingMessage, PingMessage.class);
         messageClasses.put(PongMessage, PongMessage.class);
+        messageClasses.put(RPC_MESSAGE_TYPE_REQUEST, RpcRequestMessage.class);
+        messageClasses.put(RPC_MESSAGE_TYPE_RESPONSE, RpcResponseMessage.class);
     }
 }

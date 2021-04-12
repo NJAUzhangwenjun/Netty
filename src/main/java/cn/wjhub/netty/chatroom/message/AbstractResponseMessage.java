@@ -1,5 +1,6 @@
 package cn.wjhub.netty.chatroom.message;
 
+import cn.wjhub.netty.rpc.message.Message;
 import lombok.Data;
 import lombok.ToString;
 

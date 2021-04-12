@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * 类描述：
  *
  * @ClassName QuitRequestHandler
- * @Description TODO
+ *
  * @Author 张文军
  * @Date 2021/4/11 22:23
  * @Version 1.0

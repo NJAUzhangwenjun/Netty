@@ -1,19 +1,21 @@
 package cn.wjhub.netty.rpc.message;
 
-import cn.wjhub.netty.chatroom.message.*;
+
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author user
- */
 @Data
 public abstract class Message implements Serializable {
 
-    public static Class<?> getMessageClass(int messageType) {
+    /**
+     * 根据消息类型字节，获得对应的消息 class
+     * @param messageType 消息类型字节
+     * @return 消息 class
+     */
+    public static Class<? extends Message> getMessageClass(int messageType) {
         return messageClasses.get(messageType);
     }
 
@@ -39,9 +41,16 @@ public abstract class Message implements Serializable {
     public static final int GroupMembersResponseMessage = 13;
     public static final int PingMessage = 14;
     public static final int PongMessage = 15;
+    /**
+     * 请求类型 byte 值
+     */
     public static final int RPC_MESSAGE_TYPE_REQUEST = 101;
+    /**
+     * 响应类型 byte 值
+     */
     public static final int  RPC_MESSAGE_TYPE_RESPONSE = 102;
-    private static final Map<Integer, Class<?>> messageClasses = new HashMap<>();
+
+    private static final Map<Integer, Class<? extends Message>> messageClasses = new HashMap<>();
 
     static {
         messageClasses.put(LoginRequestMessage, cn.wjhub.netty.chatroom.message.LoginRequestMessage.class);
@@ -49,18 +58,17 @@ public abstract class Message implements Serializable {
         messageClasses.put(ChatRequestMessage, cn.wjhub.netty.chatroom.message.ChatRequestMessage.class);
         messageClasses.put(ChatResponseMessage, cn.wjhub.netty.chatroom.message.ChatResponseMessage.class);
         messageClasses.put(GroupCreateRequestMessage, cn.wjhub.netty.chatroom.message.GroupCreateRequestMessage.class);
-        messageClasses.put(GroupCreateResponseMessage, GroupCreateResponseMessage.class);
-        messageClasses.put(GroupJoinRequestMessage, GroupJoinRequestMessage.class);
-        messageClasses.put(GroupJoinResponseMessage, GroupJoinResponseMessage.class);
-        messageClasses.put(GroupQuitRequestMessage, GroupQuitRequestMessage.class);
-        messageClasses.put(GroupQuitResponseMessage, GroupQuitResponseMessage.class);
-        messageClasses.put(GroupChatRequestMessage, GroupChatRequestMessage.class);
-        messageClasses.put(GroupChatResponseMessage, GroupChatResponseMessage.class);
-        messageClasses.put(GroupMembersRequestMessage, GroupMembersRequestMessage.class);
-        messageClasses.put(GroupMembersResponseMessage, GroupMembersResponseMessage.class);
-        messageClasses.put(PingMessage, PingMessage.class);
-        messageClasses.put(PongMessage, PongMessage.class);
+        messageClasses.put(GroupCreateResponseMessage, cn.wjhub.netty.chatroom.message.GroupCreateResponseMessage.class);
+        messageClasses.put(GroupJoinRequestMessage, cn.wjhub.netty.chatroom.message.GroupJoinRequestMessage.class);
+        messageClasses.put(GroupJoinResponseMessage, cn.wjhub.netty.chatroom.message.GroupJoinResponseMessage.class);
+        messageClasses.put(GroupQuitRequestMessage, cn.wjhub.netty.chatroom.message.GroupQuitRequestMessage.class);
+        messageClasses.put(GroupQuitResponseMessage, cn.wjhub.netty.chatroom.message.GroupQuitResponseMessage.class);
+        messageClasses.put(GroupChatRequestMessage, cn.wjhub.netty.chatroom.message.GroupChatRequestMessage.class);
+        messageClasses.put(GroupChatResponseMessage, cn.wjhub.netty.chatroom.message.GroupChatResponseMessage.class);
+        messageClasses.put(GroupMembersRequestMessage, cn.wjhub.netty.chatroom.message.GroupMembersRequestMessage.class);
+        messageClasses.put(GroupMembersResponseMessage, cn.wjhub.netty.chatroom.message.GroupMembersResponseMessage.class);
         messageClasses.put(RPC_MESSAGE_TYPE_REQUEST, RpcRequestMessage.class);
         messageClasses.put(RPC_MESSAGE_TYPE_RESPONSE, RpcResponseMessage.class);
     }
+
 }

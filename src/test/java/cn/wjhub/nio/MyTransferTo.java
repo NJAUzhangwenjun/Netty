@@ -11,7 +11,7 @@ import java.nio.channels.FileChannel;
  * 类描述：
  *
  * @ClassName MyTransferTo
- * @Description TODO
+ *
  * @Author 张文军
  * @Date 2021/4/6 1:18
  * @Version 1.0

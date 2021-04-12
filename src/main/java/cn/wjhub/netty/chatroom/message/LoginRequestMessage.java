@@ -1,5 +1,6 @@
 package cn.wjhub.netty.chatroom.message;
 
+import cn.wjhub.netty.rpc.message.Message;
 import lombok.Data;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;

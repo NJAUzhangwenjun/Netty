@@ -1,6 +1,7 @@
 package cn.wjhub.netty.chatroom.protocol;
 
-import cn.wjhub.netty.chatroom.message.Message;
+
+import cn.wjhub.netty.rpc.message.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

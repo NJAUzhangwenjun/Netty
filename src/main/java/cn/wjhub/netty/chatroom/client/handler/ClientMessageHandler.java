@@ -1,6 +1,7 @@
 package cn.wjhub.netty.chatroom.client.handler;
 
 import cn.wjhub.netty.chatroom.message.*;
+import cn.wjhub.netty.rpc.message.Message;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.Data;
 import lombok.ToString;
@@ -32,7 +33,6 @@ public class ClientMessageHandler {
      */
     public static void receiveInstructionsAndSendMessages(ChannelHandlerContext ctx) {
         new Thread(() -> {
-            // TODO:
             Scanner in = new Scanner(System.in);
             out.println("请输入用户名：");
             String username = in.nextLine().trim();

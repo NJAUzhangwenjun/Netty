@@ -18,7 +18,7 @@ import java.util.List;
  * 类描述：自定义聊天信息 编解码器
  *
  * @ClassName MyMessageCodec
- * @Description TODO
+ *
  * @Author 张文军
  * @Date 2021/4/10 12:39
  * @Version 1.0

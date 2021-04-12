@@ -13,7 +13,7 @@ import static java.util.concurrent.Executors.newFixedThreadPool;
  * 类描述：
  *
  * @ClassName JDKFuture
- * @Description TODO
+ *
  * @Author 张文军
  * @Date 2021/4/9 0:14
  * @Version 1.0

@@ -1,4 +1,5 @@
-package cn.wjhub.netty.chatroom.protocol;
+package cn.wjhub.netty.rpc.protocol;
+
 
 import cn.wjhub.netty.rpc.message.Message;
 import io.netty.buffer.ByteBuf;
@@ -13,9 +14,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-/**
- * @author user
- */
 @Slf4j
 @ChannelHandler.Sharable
 public class MessageCodec extends ByteToMessageCodec<Message> {

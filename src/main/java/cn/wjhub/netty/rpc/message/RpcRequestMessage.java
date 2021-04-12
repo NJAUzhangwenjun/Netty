@@ -3,6 +3,9 @@ package cn.wjhub.netty.rpc.message;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * @author yihang
+ */
 @Getter
 @ToString(callSuper = true)
 public class RpcRequestMessage extends Message {

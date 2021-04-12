@@ -17,7 +17,7 @@ import java.util.Set;
  * 类描述：
  *
  * @ClassName GroupJoinRequestMessageMessageHandler
- * @Description TODO
+ *
  * @Author 张文军
  * @Date 2021/4/11 16:15
  * @Version 1.0

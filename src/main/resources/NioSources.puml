@@ -1,0 +1,162 @@
+@startuml
+participant Actor
+Actor -> AbstractBootstrap : bind
+activate AbstractBootstrap
+AbstractBootstrap -> AbstractBootstrap : doBind
+activate AbstractBootstrap
+AbstractBootstrap -> AbstractBootstrap : initAndRegister
+activate AbstractBootstrap
+AbstractBootstrap -> ChannelFactory : newChannel
+activate ChannelFactory
+ChannelFactory --> AbstractBootstrap
+deactivate ChannelFactory
+AbstractBootstrap -> AbstractBootstrap : init
+activate AbstractBootstrap
+AbstractBootstrap --> AbstractBootstrap
+deactivate AbstractBootstrap
+AbstractBootstrap -> Channel : unsafe
+activate Channel
+Channel --> AbstractBootstrap
+deactivate Channel
+AbstractBootstrap -> Unsafe : closeForcibly
+activate Unsafe
+Unsafe --> AbstractBootstrap
+deactivate Unsafe
+AbstractBootstrap -> DefaultChannelPromise : setFailure
+activate DefaultChannelPromise
+DefaultChannelPromise --> AbstractBootstrap
+deactivate DefaultChannelPromise
+AbstractBootstrap -> DefaultChannelPromise : setFailure
+activate DefaultChannelPromise
+DefaultChannelPromise --> AbstractBootstrap
+deactivate DefaultChannelPromise
+AbstractBootstrap -> AbstractBootstrap : config
+activate AbstractBootstrap
+AbstractBootstrap --> AbstractBootstrap
+deactivate AbstractBootstrap
+AbstractBootstrap -> AbstractBootstrapConfig : group
+activate AbstractBootstrapConfig
+AbstractBootstrapConfig --> AbstractBootstrap
+deactivate AbstractBootstrapConfig
+AbstractBootstrap -> EventLoopGroup : register
+activate EventLoopGroup
+EventLoopGroup --> AbstractBootstrap
+deactivate EventLoopGroup
+AbstractBootstrap -> Future : cause
+activate Future
+Future --> AbstractBootstrap
+deactivate Future
+AbstractBootstrap -> ChannelOutboundInvoker : close
+activate ChannelOutboundInvoker
+ChannelOutboundInvoker --> AbstractBootstrap
+deactivate ChannelOutboundInvoker
+AbstractBootstrap -> Channel : unsafe
+activate Channel
+Channel --> AbstractBootstrap
+deactivate Channel
+AbstractBootstrap -> Unsafe : closeForcibly
+activate Unsafe
+Unsafe --> AbstractBootstrap
+deactivate Unsafe
+AbstractBootstrap --> AbstractBootstrap
+deactivate AbstractBootstrap
+AbstractBootstrap -> ChannelFuture : channel
+activate ChannelFuture
+ChannelFuture --> AbstractBootstrap
+deactivate ChannelFuture
+AbstractBootstrap -> Future : cause
+activate Future
+Future --> AbstractBootstrap
+deactivate Future
+AbstractBootstrap -> ChannelOutboundInvoker : newPromise
+activate ChannelOutboundInvoker
+ChannelOutboundInvoker --> AbstractBootstrap
+deactivate ChannelOutboundInvoker
+AbstractBootstrap -> AbstractBootstrap : doBind0
+activate AbstractBootstrap
+AbstractBootstrap -> Channel : eventLoop
+activate Channel
+Channel --> AbstractBootstrap
+deactivate Channel
+AbstractBootstrap -> Executor : execute
+activate Executor
+Executor --> AbstractBootstrap
+deactivate Executor
+AbstractBootstrap -> Anonymous : run
+activate Anonymous
+Anonymous -> ChannelOutboundInvoker : bind
+activate ChannelOutboundInvoker
+ChannelOutboundInvoker --> Anonymous
+deactivate ChannelOutboundInvoker
+Anonymous -> ChannelFuture : addListener
+activate ChannelFuture
+ChannelFuture --> Anonymous
+deactivate ChannelFuture
+Anonymous -> Future : cause
+activate Future
+Future --> Anonymous
+deactivate Future
+Anonymous --> AbstractBootstrap
+deactivate Anonymous
+AbstractBootstrap --> AbstractBootstrap
+deactivate AbstractBootstrap
+AbstractBootstrap -> PendingRegistrationPromise : new
+activate PendingRegistrationPromise
+PendingRegistrationPromise -> DefaultChannelPromise : new
+activate DefaultChannelPromise
+DefaultChannelPromise --> PendingRegistrationPromise
+deactivate DefaultChannelPromise
+PendingRegistrationPromise --> AbstractBootstrap
+deactivate PendingRegistrationPromise
+AbstractBootstrap -> Anonymous : operationComplete
+activate Anonymous
+Anonymous -> Future : cause
+activate Future
+Future --> Anonymous
+deactivate Future
+Anonymous -> DefaultChannelPromise : setFailure
+activate DefaultChannelPromise
+DefaultChannelPromise --> Anonymous
+deactivate DefaultChannelPromise
+Anonymous -> PendingRegistrationPromise : registered
+activate PendingRegistrationPromise
+PendingRegistrationPromise --> Anonymous
+deactivate PendingRegistrationPromise
+Anonymous -> AbstractBootstrap : doBind0
+activate AbstractBootstrap
+AbstractBootstrap -> Channel : eventLoop
+activate Channel
+Channel --> AbstractBootstrap
+deactivate Channel
+AbstractBootstrap -> Executor : execute
+activate Executor
+Executor --> AbstractBootstrap
+deactivate Executor
+AbstractBootstrap -> Anonymous : run
+activate Anonymous
+Anonymous -> ChannelOutboundInvoker : bind
+activate ChannelOutboundInvoker
+ChannelOutboundInvoker --> Anonymous
+deactivate ChannelOutboundInvoker
+Anonymous -> ChannelFuture : addListener
+activate ChannelFuture
+ChannelFuture --> Anonymous
+deactivate ChannelFuture
+Anonymous -> Future : cause
+activate Future
+Future --> Anonymous
+deactivate Future
+Anonymous --> AbstractBootstrap
+deactivate Anonymous
+AbstractBootstrap --> Anonymous
+deactivate AbstractBootstrap
+Anonymous --> AbstractBootstrap
+deactivate Anonymous
+AbstractBootstrap -> ChannelFuture : addListener
+activate ChannelFuture
+ChannelFuture --> AbstractBootstrap
+deactivate ChannelFuture
+AbstractBootstrap --> AbstractBootstrap
+deactivate AbstractBootstrap
+return
+@enduml

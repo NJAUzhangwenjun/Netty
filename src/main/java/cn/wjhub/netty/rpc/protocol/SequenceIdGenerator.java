@@ -2,10 +2,13 @@ package cn.wjhub.netty.rpc.protocol;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author user
+ */
 public abstract class SequenceIdGenerator {
-    private static final AtomicInteger id = new AtomicInteger();
+    private static final AtomicInteger ID = new AtomicInteger();
 
     public static int nextId() {
-        return id.incrementAndGet();
+        return ID.incrementAndGet();
     }
 }

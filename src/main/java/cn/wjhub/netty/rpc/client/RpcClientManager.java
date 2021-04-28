@@ -4,7 +4,7 @@ package cn.wjhub.netty.rpc.client;
 import cn.wjhub.netty.rpc.handler.RpcResponseMessageHandler;
 import cn.wjhub.netty.rpc.message.RpcRequestMessage;
 import cn.wjhub.netty.rpc.protocol.MessageCodecSharable;
-import cn.wjhub.netty.rpc.protocol.ProcotolFrameDecoder;
+import cn.wjhub.netty.rpc.protocol.ProtocolFrameDecoder;
 import cn.wjhub.netty.rpc.protocol.SequenceIdGenerator;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
@@ -27,13 +27,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 public class RpcClientManager {
-    private volatile static Channel channel = null;
     /**
      * 用来存储promise的集合（将结果发出去后可以接受）
      */
     public static final Map<Integer, Promise<Object>> PROMISE_MAP = new ConcurrentHashMap<>();
 
-
+    private volatile static Channel channel = null;
     /**
      * 获取单例 channel
      *
@@ -49,7 +48,6 @@ public class RpcClientManager {
         }
         return channel;
     }
-
     private RpcClientManager() {
     }
 
@@ -68,7 +66,7 @@ public class RpcClientManager {
         bootstrap.handler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-                ch.pipeline().addLast(new ProcotolFrameDecoder());
+                ch.pipeline().addLast(new ProtocolFrameDecoder());
                 ch.pipeline().addLast(LOGGING_HANDLER);
                 ch.pipeline().addLast(MESSAGE_CODEC);
                 ch.pipeline().addLast(RPC_HANDLER);
@@ -93,7 +91,7 @@ public class RpcClientManager {
      * @param <T>          代理对象类型
      * @return 代理后的代理对象
      */
-    public static <T> T GetProxyService(Class<T> serviceClass) {
+    public static <T> T getProxyService(Class<T> serviceClass) {
         /*JDK代理*/
         Object proxyInstance = Proxy.newProxyInstance(serviceClass.getClassLoader(), new Class[]{serviceClass},
                 /*方法调用时增强的部分*/
@@ -109,9 +107,9 @@ public class RpcClientManager {
                     /**将消息发送出去*/
                     getChannel().writeAndFlush(msg);
                     /**
-                     * 接收结果
+                     * 异步接收结果
                      * */
-                    DefaultPromise<Object> promise = new DefaultPromise<>(getChannel().eventLoop());
+                    DefaultPromise<Object> promise = new DefaultPromise<>(getChannel().eventLoop()/*异步接收结果的线程*/);
                     PROMISE_MAP.put(msg.getSequenceId(), promise);
                     /*在远程调用到结果前阻塞当前线程*/
                     promise.await();

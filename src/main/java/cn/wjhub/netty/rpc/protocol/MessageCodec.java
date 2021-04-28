@@ -14,6 +14,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+/**
+ *
+ * @author user
+ */
 @Slf4j
 @ChannelHandler.Sharable
 public class MessageCodec extends ByteToMessageCodec<Message> {

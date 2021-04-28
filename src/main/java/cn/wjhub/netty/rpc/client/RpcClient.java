@@ -4,7 +4,7 @@ package cn.wjhub.netty.rpc.client;
 import cn.wjhub.netty.rpc.handler.RpcResponseMessageHandler;
 import cn.wjhub.netty.rpc.message.RpcRequestMessage;
 import cn.wjhub.netty.rpc.protocol.MessageCodecSharable;
-import cn.wjhub.netty.rpc.protocol.ProcotolFrameDecoder;
+import cn.wjhub.netty.rpc.protocol.ProtocolFrameDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -33,7 +33,7 @@ public class RpcClient {
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+                    ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(LOGGING_HANDLER);
                     ch.pipeline().addLast(MESSAGE_CODEC);
                     ch.pipeline().addLast(RPC_HANDLER);

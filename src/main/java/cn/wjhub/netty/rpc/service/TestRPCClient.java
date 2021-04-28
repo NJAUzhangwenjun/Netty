@@ -1,6 +1,6 @@
 package cn.wjhub.netty.rpc.service;
 
-import static cn.wjhub.netty.rpc.client.RpcClientManager.GetProxyService;
+import static cn.wjhub.netty.rpc.client.RpcClientManager.getProxyService;
 
 /**
  * 类描述：自定义 RPC框架使用测试
@@ -14,7 +14,7 @@ import static cn.wjhub.netty.rpc.client.RpcClientManager.GetProxyService;
 
 public class TestRPCClient {
     public static void main(String[] args) {
-        HelloService service = GetProxyService(HelloService.class);
+        HelloService service = getProxyService(HelloService.class);
         System.out.println(service.say("zhangsan"));
         System.out.println(service.say("wangwu"));
     }

@@ -3,7 +3,7 @@ package cn.wjhub.netty.rpc.server;
 
 import cn.wjhub.netty.rpc.handler.RpcRequestMessageHandler;
 import cn.wjhub.netty.rpc.protocol.MessageCodecSharable;
-import cn.wjhub.netty.rpc.protocol.ProcotolFrameDecoder;
+import cn.wjhub.netty.rpc.protocol.ProtocolFrameDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -41,7 +41,7 @@ public class RpcServer {
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+                    ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(LOGGING_HANDLER);
                     ch.pipeline().addLast(MESSAGE_CODEC);
                     ch.pipeline().addLast(RPC_HANDLER);
@@ -50,7 +50,7 @@ public class RpcServer {
             Channel channel = serverBootstrap.bind(8080).sync().channel();
             channel.closeFuture().sync();
         } catch (InterruptedException e) {
-            log.error("server error", e);
+            log.error("server error:{}", e.getMessage());
         } finally {
             boss.shutdownGracefully();
             worker.shutdownGracefully();

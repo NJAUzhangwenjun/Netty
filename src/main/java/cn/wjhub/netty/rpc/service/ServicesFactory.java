@@ -7,6 +7,9 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author user
+ */
 public class ServicesFactory {
 
     static Properties properties;

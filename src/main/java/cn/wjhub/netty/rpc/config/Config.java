@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author user
+ */
 public abstract class Config {
     static Properties properties;
     static {

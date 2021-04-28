@@ -22,7 +22,7 @@ public class RpcResponseMessageHandler extends SimpleChannelInboundHandler<RpcRe
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcResponseMessage msg) throws Exception {
         log.info("返回响应:={}", msg);
-        Promise<Object> promise = PROMISE_MAP.get(msg.getSequenceId());
+        Promise<Object> promise = PROMISE_MAP.remove(msg.getSequenceId());
         if (promise != null) {
             /*不管调用一下那个方法，都会让 promise.wait()结束等待*/
             if (msg.getExceptionValue() != null) {
